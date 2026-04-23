@@ -8,7 +8,7 @@ class Flight{
 class Booking{
 };
 
-class Admin{
+class Admin{ //FRIEND TO EVERY CLASS
 };
 class Gates{
 };
