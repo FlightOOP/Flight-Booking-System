@@ -1,14 +1,25 @@
 #include <iostream>
 using namespace std;
 
-class Guest {
+class User{
+
 };
-class Flight{
-};
-class Booking{
+class Guest : public User{ //inherits from User
+  
 };
 
-class Admin{ //FRIEND TO EVERY CLASS
+class Admin: public User { //inherits from User
 };
+
 class Gates{
+    //gates exist no matter what
 };
+class Flight{
+    Gates* gate; //
+    Booking bookings;
+    //one flight has array of bookings
+};
+class Booking{
+    
+};
+
