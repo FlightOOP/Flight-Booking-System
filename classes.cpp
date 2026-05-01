@@ -38,16 +38,15 @@ class Admin: public User { //inherits from User
     }
 };
 
-
 class Booking{
 protected:
     string destinationFrom, destinationTo, date, time, gateNo, seatClass, flight;
     int seatNo;
 public:
     //pssngrInfo is a friend of user (to get his info)
-    void passengerInfo(){}
-    void cancelBooking(){}
-    void bookingInfo(){}
+    void passengerInfo();
+    void cancelBooking();
+    void bookingInfo();
 };
 void Booking::passengerInfo(){
     cout << "Full Name: " << endl;
