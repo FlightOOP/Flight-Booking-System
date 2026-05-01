@@ -1,19 +1,19 @@
 #include <iostream>
 using namespace std;
 
-class User{
+class User{                  
     public:
     string user_name;
     User(){}
     protected:
     string password;
     public: //BOTH ADMIN AND GUEST USE THIS
-    void login(string usrnm){
+    void login(string usrnm){                                     //How does the system know if it's an admin or guest?
         if (usrnm==user_name){
             string tempp;
             cout<<"Enter password: "<<endl;
             cin>>tempp;
-            if (tempp==password){
+            if (tempp==password){                                //Change to while loop to keep asking for password
                 cout<<"Login succesful! Welcome "<<user_name;
             }
             else {cout<<"Incorrect password. ";}
@@ -88,7 +88,7 @@ public:
         destination = des;
     }
     void delay(){
-        cout << "Flight " << flight_num << " Has been delayed " << endl;
+        cout << "Flight " << flight_num << " Has been delayed " << endl;    //Add randomizer here 
     }
     void display_flight(){
         cout << "Flight number " << flight_num << endl;
@@ -102,6 +102,8 @@ public:
 };
 
 int main(){
-    Guest  u1("Name","abc123");
+
+    cout<<"-----------------FLIGHT BOOKING SYSTEM--------------------"<<endl;
+    Guest  u1("Name","abc123");                                            //Move main to it's own file 
     u1.login("Name");
 }
