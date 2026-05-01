@@ -75,7 +75,30 @@ void Booking::bookingInfo(){
 }
 
 class Flight{
-    Booking bookings;
+    string departure;
+    string arrival;
+    int flight_num;
+    string destination;
+
+public:
+    Flight(){}
+    Flight(string dep, string arr, int flnum, string des ){
+        departure = dep;
+        arrival = arr;
+        flight_num = flnum;
+        destination = des;
+    }
+    void delay(){
+        cout << "Flight " << flight_num << " Has been delayed " << endl;
+    }
+    void display_flight(){
+        cout << "Flight number " << flight_num << endl;
+         cout << "Departure time  " << departure << endl;        
+         cout << "Arrival time  " << arrival << endl;        
+         cout << "Destination  " << destination << endl;        
+
+        
+    }
     //one flight has array of bookings
 };
 
