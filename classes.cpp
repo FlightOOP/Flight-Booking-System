@@ -11,9 +11,7 @@ class Guest : public User{ //inherits from User
 class Admin: public User { //inherits from User
 };
 
-class Gates{
-    //gates exist no matter what
-};
+
 class Booking{
     
 };
