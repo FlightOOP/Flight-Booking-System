@@ -1,19 +1,26 @@
 #include <iostream>
 using namespace std;
 
-class User{                  
+class User{
     public:
     string user_name;
     User(){}
-    protected:
+    private:
     string password;
-    public: //BOTH ADMIN AND GUEST USE THIS
-    void login(string usrnm){                                     //How does the system know if it's an admin or guest?
+    long int phone_no;
+    public: //BOTH ADMIN AND GYEST USE THIS
+    void setPasswword(string p){
+        password=p;
+    }
+    string getPassword(){
+        return password;
+    }
+    void login(string usrnm){
         if (usrnm==user_name){
             string tempp;
             cout<<"Enter password: "<<endl;
             cin>>tempp;
-            if (tempp==password){                                //Change to while loop to keep asking for password
+            if (tempp==password){
                 cout<<"Login succesful! Welcome "<<user_name;
             }
             else {cout<<"Incorrect password. ";}
@@ -23,18 +30,16 @@ class User{
 };
 class Guest : public User{ //inherits from User
     public:
-    Guest(string us, const string psswd) {
+    Guest(string us) {
         user_name=us;
-        password=psswd;
     }
     
 };
 
 class Admin: public User { //inherits from User
     public:
-    Admin(string us, const string psswd) {
+    Admin(string us) {
         user_name=us;
-        password=psswd;
     }
 };
 
