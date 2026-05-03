@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 class User{
@@ -27,7 +28,6 @@ class User{
     long int getPhone_no(){
         return phone_no;
     }
-
     //BOTH ADMIN AND GUEST USE THIS
     void login(string usrnm){
         if (usrnm==user_name){
@@ -53,6 +53,7 @@ class Admin: public User { //inherits from User
         user_name=us;
     }
 };
+
 class Booking{
 protected:
     string destinationFrom, destinationTo, date, time, gateNo, seatClass, flight;
