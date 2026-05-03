@@ -5,10 +5,12 @@ class User{
     public:
     string user_name;
     User(){}
+
     private:
     string password;
     long int phone_no;
-    public: //BOTH ADMIN AND GYEST USE THIS
+
+    public: //BOTH ADMIN AND GUEST USE THIS
     void setPasswword(string p){
         password=p;
     }
@@ -20,12 +22,11 @@ class User{
             string tempp;
             cout<<"Enter password: "<<endl;
             cin>>tempp;
-            if (tempp==password){
+            if (tempp==password){ //user enetrs correct password
                 cout<<"Login succesful! Welcome "<<user_name;
             }
             else {cout<<"Incorrect password. ";}
-        }
-            
+        }    
     }
 };
 class Guest : public User{ //inherits from User
@@ -33,9 +34,7 @@ class Guest : public User{ //inherits from User
     Guest(string us) {
         user_name=us;
     }
-    
 };
-
 class Admin: public User { //inherits from User
     public:
     Admin(string us) {
