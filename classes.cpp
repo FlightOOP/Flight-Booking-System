@@ -2,21 +2,33 @@
 using namespace std;
 
 class User{
-    public:
+    protected:
     string user_name;
-    User(){}
-
+    
     private:
     string password;
     long int phone_no;
 
-    public: //BOTH ADMIN AND GUEST USE THIS
+    public: 
+    User(){} 
     void setPasswword(string p){
         password=p;
     }
     string getPassword(){
         return password;
     }
+
+    void setPhone_no(long int phno){
+        if (to_string(phno).length()==8){
+        phone_no=phno;
+        }
+        else {cout<<"Phone number must be 8 digits long"<<endl;}
+    }
+    long int getPhone_no(){
+        return phone_no;
+    }
+
+    //BOTH ADMIN AND GUEST USE THIS
     void login(string usrnm){
         if (usrnm==user_name){
             string tempp;
@@ -41,7 +53,6 @@ class Admin: public User { //inherits from User
         user_name=us;
     }
 };
-
 class Booking{
 protected:
     string destinationFrom, destinationTo, date, time, gateNo, seatClass, flight;
