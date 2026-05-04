@@ -125,21 +125,26 @@ void Booking::bookingInfo(){
 }
 
 class Flight{
+private:
     string departure;
     string arrival;
     int flight_num;
     string destination;
+    vector<booking> booking; //flight contains multiple bookings
 
 public:
-    Flight(){}
+    Flight(){ 
+        srand(time(0));// initializes random once
+    }
     Flight(string dep, string arr, int flnum, string des ){
         departure = dep;
         arrival = arr;
         flight_num = flnum;
         destination = des;
+        srand(time(0));
     }
     void delay(){
-        cout << "Flight " << flight_num << " Has been delayed " << endl;    //Add randomizer here 
+        cout << "Flight " << flight_num << " Has been delayed " << endl;    //Add randomizer here (not in booking?) 
     }
     void display_flight(){
         cout << "Flight number " << flight_num << endl;
@@ -149,6 +154,17 @@ public:
 
         
     }
+    void setDeparture(string dep){ departure = dep; }
+    string getDeparture(){ return departure; }
+
+    void setArrival(string arr){ arrival = arr; }
+    string getArrival(){ return arrival; }
+
+    void setFlightNum(int num){ flight_num = num; }
+    int getFlightNum(){ return flight_num; }
+
+    void setDestination(string des){ destination = des; }
+    string getDestination(){ return destination; }
     //one flight has array of bookings
 };
 
