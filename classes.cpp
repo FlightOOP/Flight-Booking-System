@@ -130,7 +130,7 @@ private:
     string arrival;
     int flight_num;
     string destination;
-    vector<booking> booking; //flight contains multiple bookings
+    vector<Booking> booking; //flight contains multiple bookings
 
 public:
     Flight(){ 
@@ -148,12 +148,12 @@ public:
     }
     void display_flight(){
         cout << "Flight number " << flight_num << endl;
-         cout << "Departure time  " << departure << endl;        
-         cout << "Arrival time  " << arrival << endl;        
-         cout << "Destination  " << destination << endl;        
-
+        cout << "Departure time  " << departure << endl;        
+        cout << "Arrival time  " << arrival << endl;        
+        cout << "Destination  " << destination << endl;        
         
     }
+    // getters and setters
     void setDeparture(string dep){ departure = dep; }
     string getDeparture(){ return departure; }
 
@@ -165,12 +165,40 @@ public:
 
     void setDestination(string des){ destination = des; }
     string getDestination(){ return destination; }
+
+    //seat randomizer
+    int generateSeat(string seatClass){
+    if(seatClass == "First"){
+        return rand() % 20 + 1;
+        }
+    else if(seatClass == "Business"){
+        return rand() % 40 + 21;
+        }
+    else{
+        return rand() % 90 + 61;
+        }
+    }
+
+    //check if taimaa should add it to her part
+    void bookFlight(){
+    string seatClass;
+    display_flight();
+    cout << "Enter class (First / Business / Economy): " << endl;
+    cin >> seatClass;
+    //generate seat
+    int seat = generateSeat(seatClass);
+    //create booking
+    Booking b(departure, destination, "12-06-2026", arrival, "A1", seatClass, to_string(flight_num));
+    booking.push_back(b);
+    cout << "Seat assigned: " << seat << endl;
+    cout << "Booking successful!\n";
+    }
+        
     //one flight has array of bookings
 };
 
 int main(){
 
     cout<<"-----------------FLIGHT BOOKING SYSTEM--------------------"<<endl;
-    Guest  u1("Name","abc123");                                            //Move main to it's own file 
-    u1.login("Name");
+    //Move main to it's own file 
 }
