@@ -9,6 +9,7 @@ class User{
     private:
     string password;
     long int phone_no;
+    string bank_no;
 
     public: 
     User(){} 
@@ -28,23 +29,32 @@ class User{
     long int getPhone_no(){
         return phone_no;
     }
-    //BOTH ADMIN AND GUEST USE THIS
-    void login(string usrnm){
-        if (usrnm==user_name){
-            string tempp;
-            cout<<"Enter password: "<<endl;
-            cin>>tempp;
-            if (tempp==password){ //user enetrs correct password
-                cout<<"Login succesful! Welcome "<<user_name;
-            }
-            else {cout<<"Incorrect password. ";}
-        }    
+
+    void setBank_no(string b){
+        bank_no=b;
     }
+    string getBank_no(){
+        return bank_no;
+    }
+    //BOTH ADMIN AND GUEST USE THIS
+    virtual void login(string usrnm)=0;
 };
 class Guest : public User{ //inherits from User
     public:
     Guest(string us) {
         user_name=us;
+    }
+    void login(string usrnm) override {
+        if (usrnm==user_name){
+            string tempp;
+            cout<<"Enter password Guest: "<<endl;
+            cin>>tempp;
+            string p=getPassword();
+            if (tempp==p){ //user enetrs correct password
+                cout<<"Login succesful! Welcome "<<user_name;
+            }
+            else {cout<<"Incorrect password. ";}
+        }    
     }
 };
 class Admin: public User { //inherits from User
@@ -52,7 +62,20 @@ class Admin: public User { //inherits from User
     Admin(string us) {
         user_name=us;
     }
+    void login(string usrnm) override {
+        if (usrnm==user_name){
+            string tempp;
+            cout<<"Enter password Admin: "<<endl;
+            cin>>tempp;
+            string p=getPassword();
+            if (tempp==p){ //user enetrs correct password
+                cout<<"Login succesful! Welcome "<<user_name;
+            }
+            else {cout<<"Incorrect password. ";}
+        }    
+    }
 };
+
 
 class Booking{
 protected:
