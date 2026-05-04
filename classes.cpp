@@ -36,6 +36,12 @@ class User{
     string getBank_no(){
         return bank_no;
     }
+    void setUser_name(string us){
+        user_name=us;
+    }
+    string getUser_name(){
+        return user_name;
+    }
     //BOTH ADMIN AND GUEST USE THIS
     virtual void login(string usrnm)=0;
 };
