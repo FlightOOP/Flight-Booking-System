@@ -124,7 +124,7 @@ void Booking::bookingInfo(){
     cout << "Gate Number: " << gateNo << endl;
 }
 
-class Flight{
+class Flight  {
 private:
     string departure;
     string arrival;
@@ -133,6 +133,7 @@ private:
     vector<Booking> booking; //flight contains multiple bookings
 
 public:
+static int countBooking;
     Flight(){ 
         srand(time(0));// initializes random once
     }
@@ -189,9 +190,17 @@ public:
     int seat = generateSeat(seatClass);
     //create booking
     Booking b(departure, destination, "12-06-2026", arrival, "A1", seatClass, to_string(flight_num));
-    booking.push_back(b);
+    booking.push_back(b);   
     cout << "Seat assigned: " << seat << endl;
     cout << "Booking successful!\n";
+
+    //to count num of bookings
+    countBooking++; 
+    }
+    //showing how many bookings per flight
+    string showInfo(){
+        string s = "Flight " + to_string(flight_num) + " to " + getDestination() + " has " + to_string(countBooking) + " bookings.";
+        return s;
     }
         
     //one flight has array of bookings
