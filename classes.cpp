@@ -130,6 +130,7 @@ private:
     string arrival;
     int flight_num;
     string destination;
+    // add string seatclass
     vector<Booking> booking; //flight contains multiple bookings
 
 public:
