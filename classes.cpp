@@ -195,13 +195,13 @@ static int countBooking;
     cout << "Seat assigned: " << seat << endl;
     cout << "Booking successful!\n";
 
-    //to count num of bookings
-    countBooking++; 
+    //to count num of bookings 
+    countBooking++ ; 
     }
     //showing how many bookings per flight
     string showInfo(){
-        string s = "Flight " + to_string(flight_num) + " to " + getDestination() + " has " + to_string(countBooking) + " bookings.";
-        return s;
+        string s = "Flight " + to_string(flight_num) + " to " + getDestination() + " has " + to_string (countBooking) + " bookings.";
+        return s ;
     }
         
     //one flight has array of bookings
