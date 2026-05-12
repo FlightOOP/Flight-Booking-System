@@ -130,7 +130,7 @@ private:
     string arrival;
     int flight_num;
     string destination;
-    // add string seatclass
+    string seatClass;
     vector<Booking> booking; //flight contains multiple bookings
 
 public:
@@ -138,6 +138,7 @@ static int countBooking;
     Flight(){ 
         srand(time(0));// initializes random once
     }
+    //constructor 
     Flight(string dep, string arr, int flnum, string des ){
         departure = dep;
         arrival = arr;
@@ -145,9 +146,7 @@ static int countBooking;
         destination = des;
         srand(time(0));
     }
-    void delay(){
-        cout << "Flight " << flight_num << " Has been delayed " << endl;    //Add randomizer here (not in booking?) 
-    }
+
     void display_flight(){
         cout << "Flight number " << flight_num << endl;
         cout << "Departure time  " << departure << endl;        
@@ -155,7 +154,7 @@ static int countBooking;
         cout << "Destination  " << destination << endl;        
         
     }
-    // getters and setters
+    // getters and setters (not necessary to use )
     void setDeparture(string dep){ departure = dep; }
     string getDeparture(){ return departure; }
 
@@ -187,10 +186,12 @@ static int countBooking;
     display_flight();
     cout << "Enter class (First / Business / Economy): " << endl;
     cin >> seatClass;
+        
     //generate seat
     int seat = generateSeat(seatClass);
-    //create booking
-    Booking b(departure, destination, "12-06-2026", arrival, "A1", seatClass, to_string(flight_num));
+        
+    //create booking (Taimaa)
+    Booking b(departure, destination, "12-06-2026", arrival, "A1", seatClass, to_string(flight_num)); // add date and gate from booking class using composition
     booking.push_back(b);   
     cout << "Seat assigned: " << seat << endl;
     cout << "Booking successful!\n";
@@ -201,11 +202,13 @@ static int countBooking;
     //showing how many bookings per flight
     string showInfo(){
         string s = "Flight " + to_string(flight_num) + " to " + getDestination() + " has " + to_string (countBooking) + " bookings.";
+        
         return s ;
     }
         
     //one flight has array of bookings
 };
+int Flight :: countBooking;
 
 int main(){
 
