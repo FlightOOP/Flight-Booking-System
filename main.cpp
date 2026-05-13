@@ -3,6 +3,11 @@
 #include<cstdlib>
 #include<ctime>
 #include <iostream>
+#include "User.h"
+#include "Guest.h"
+#include "Admin.h"
+#include "Booking.h"
+#include "Flight.h"
 using namespace std;
 
 int main(){
