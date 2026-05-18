@@ -212,7 +212,7 @@ static int countBooking;
         
         return s ;
     }
-        
+    friend class Admin;    
     //one flight has array of bookings
 };
 int Flight :: countBooking;
