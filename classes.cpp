@@ -141,6 +141,11 @@ private:
     vector<Booking> booking; //flight contains multiple bookings
 
 public:
+    
+bool operator==(const Flight& other){
+    return this->flight_num == other.flight_num;
+}
+
 static int countBooking;
     Flight(){ 
         srand(time(0));// initializes random once
