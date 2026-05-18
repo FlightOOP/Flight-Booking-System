@@ -101,7 +101,7 @@ protected:
     bool isCancelled;
 public:
 Booking(User* u , string destinationFrom, string destinationTo, string date, string time, string gateNo, string seatClass,
-    string flight) : user(u), destinationFrom(destinationFrom), destinationTo(destinationTo), date(date),
+    string flight, int seatNo) : user(u), destinationFrom(destinationFrom), destinationTo(destinationTo), date(date),
     time(time), gateNo(gateNo), seatClass(seatClass), flight(flight), seatNo(seatNo), isCancelled(false){}
     //pssngrInfo is a friend of user (to get his info)
     void passengerInfo();
