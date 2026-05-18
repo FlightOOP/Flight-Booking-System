@@ -95,20 +95,21 @@ class Admin: public User { //inherits from User
 
 class Booking{
 protected:
+    User *user;//composition between user and booking
     string destinationFrom, destinationTo, date, time, gateNo, seatClass, flight;
     int seatNo;
 public:
-Booking(string destinationFrom, string destinationTo, string date, string time, string gateNo, string seatClass,
-    string flight) : destinationFrom(destinationFrom), destinationTo(destinationTo), date(date),
+Booking(User* u , string destinationFrom, string destinationTo, string date, string time, string gateNo, string seatClass,
+    string flight) : user(u), destinationFrom(destinationFrom), destinationTo(destinationTo), date(date),
     time(time), gateNo(gateNo), seatClass(seatClass), flight(flight){}
     //pssngrInfo is a friend of user (to get his info)
     void passengerInfo();
     void cancelBooking();
     void bookingInfo();
-};
+};g 
 void Booking::passengerInfo(){
-    cout << "Full Name: " << endl;
-    cout << "Phone Number: " << endl;
+    cout << "Full Name: " << user->getUser_name() << endl;
+    cout << "Phone Number: " << user->getPhone_no() << endl;
 }
 void Booking::cancelBooking(){
     int n;
@@ -119,7 +120,7 @@ void Booking::cancelBooking(){
 }
 void Booking::bookingInfo(){
     cout << "Your Booking has been Confirmed. Please Don't loose Your ticket.\n";
-    cout << "Passenger Name: " << endl;
+    cout << "Passenger Name: " << user->getUser_name() << endl;
     cout << "Date: " << date << endl;
     cout << "Flight: " << flight << endl;
     cout << endl;
