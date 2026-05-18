@@ -208,7 +208,7 @@ static int countBooking;
     int seat = generateSeat(seatClass);
         
     //create booking (Taimaa)
-    Booking b(currentUser, departure, destination, "12-06-2026", arrival, "A1", seatClass, to_string(flight_num)); // add date and gate from booking class using composition
+    Booking b(currentUser, departure, destination, "12-06-2026", arrival, "A1", seatClass, to_string(flight_num),seat); // add date and gate from booking class using composition
     booking.push_back(b);   
     cout << "Seat assigned: " << seat << endl;
     cout << "Booking successful!\n";
