@@ -98,38 +98,42 @@ protected:
     User *user;//composition between user and booking
     string destinationFrom, destinationTo, date, time, gateNo, seatClass, flight;
     int seatNo;
+    bool isCancelled;
 public:
 Booking(User* u , string destinationFrom, string destinationTo, string date, string time, string gateNo, string seatClass,
     string flight) : user(u), destinationFrom(destinationFrom), destinationTo(destinationTo), date(date),
-    time(time), gateNo(gateNo), seatClass(seatClass), flight(flight){}
+    time(time), gateNo(gateNo), seatClass(seatClass), flight(flight), seatNo(seatNo), isCancelled(false){}
     //pssngrInfo is a friend of user (to get his info)
     void passengerInfo();
     void cancelBooking();
     void bookingInfo();
-};g 
+};
 void Booking::passengerInfo(){
     cout << "Full Name: " << user->getUser_name() << endl;
     cout << "Phone Number: " << user->getPhone_no() << endl;
 }
 void Booking::cancelBooking(){
-    int n;
-    cout << "Enter 1 to cancle your booking. \nEnter 0 to continue without canceling: ";
-    cin >> n;
-    if (n==1){cout << "Booking cancelled.\n";}
-    else {cout << "Booking confirmed\n";}
+    isCancelled = true;
+    cout << "Booking cancelled.\n";
 }
 void Booking::bookingInfo(){
-    cout << "Your Booking has been Confirmed. Please Don't loose Your ticket.\n";
-    cout << "Passenger Name: " << user->getUser_name() << endl;
-    cout << "Date: " << date << endl;
-    cout << "Flight: " << flight << endl;
-    cout << endl;
-    cout << "Boarding Time: " << time << endl;
-    cout << endl;
-    cout << "Destination from " << destinationFrom << " to " << destinationTo << endl;
-    cout << "class: " << seatClass << endl;
-    cout << "Seat Number: " << seatNo << endl;
-    cout << "Gate Number: " << gateNo << endl;
+    cout << "\n----- Booking Info -----\n";
+
+    if (isCancelled){
+        cout << "Status: Cancelled\n";
+    } else {
+        cout << "Status: Confirmed\n";
+        cout << "Passenger Name: " << user->getUser_name() << endl;
+        cout << "Date: " << date << endl;
+        cout << "Flight: " << flight << endl;
+        cout << endl;
+        cout << "Boarding Time: " << time << endl;
+        cout << endl;
+        cout << "Destination from " << destinationFrom << " to " << destinationTo << endl;
+        cout << "class: " << seatClass << endl;
+        cout << "Seat Number: " << seatNo << endl;
+        cout << "Gate Number: " << gateNo << endl;
+    }
 }
 
 class Flight  {
@@ -194,7 +198,7 @@ static int countBooking;
     }
 
     //check if taimaa should add it to her part
-    void bookFlight(){
+    void bookFlight(User* currentUser){
     string seatClass;
     display_flight();
     cout << "Enter class (First / Business / Economy): " << endl;
@@ -204,7 +208,7 @@ static int countBooking;
     int seat = generateSeat(seatClass);
         
     //create booking (Taimaa)
-    Booking b(departure, destination, "12-06-2026", arrival, "A1", seatClass, to_string(flight_num)); // add date and gate from booking class using composition
+    Booking b(currentUser, departure, destination, "12-06-2026", arrival, "A1", seatClass, to_string(flight_num)); // add date and gate from booking class using composition
     booking.push_back(b);   
     cout << "Seat assigned: " << seat << endl;
     cout << "Booking successful!\n";
@@ -268,7 +272,7 @@ int main(){
         case 1: cout<<"Please enter the number of the flight you want to book"<<endl;
             int flight_number;
             cin>>flight_number;                                                 //Should sift through the array of flights
-            f1.bookFlight();
+            f1.bookFlight(&g1);
             break;
 
         case 2: //Function to cancel by booking here
