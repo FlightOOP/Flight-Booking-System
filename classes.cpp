@@ -45,7 +45,7 @@ class User{
         return user_name;
     }
     //BOTH ADMIN AND GUEST USE THIS
-    virtual void login(string usrnm)=0;
+    virtual void login()=0;
 };
 
 class Booking{
@@ -199,7 +199,10 @@ class Guest : public User{ //inherits from User
     Guest(string us) {
         user_name=us;
     }
-    void login(string usrnm) override {
+    void login() override {
+        string usrnm;
+        cout<<"Enter your username: ";
+        cin>>usrnm;
         if (usrnm==user_name){
             string tempp;
             cout<<"Enter password Guest: "<<endl;
@@ -218,6 +221,9 @@ class Admin: public User { //inherits from User
         user_name=us;
     }
     void login(string usrnm) override {
+        string usrnm;
+        cout<<"Enter your username: ";
+        cin>>usrnm;
         if (usrnm==user_name){
             string tempp;
             cout<<"Enter password Admin: "<<endl;
@@ -257,11 +263,11 @@ int main(){
     cin>>specify;                                                          //**Will add exception handling after we learn it**
     if (specify==1)
     {
-        a1.login("Admin 1");
+        a1.login();
     }
     if (specify==0)
     {
-        g1.login("Guest 1");
+        g1.login();
     }
 
     cout<<"\n-----------------------------------------------------------"<<endl;
