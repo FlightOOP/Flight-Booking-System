@@ -3,6 +3,7 @@
 #include<vector>
 #include<cstdlib>
 #include<ctime>
+#include <stdexcept>
 using namespace std;
 class User{
     protected:
