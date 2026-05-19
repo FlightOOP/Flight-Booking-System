@@ -151,7 +151,8 @@ bool operator==(const Flight& other){
     return this->flight_num == other.flight_num;
 }
 
-static int countBooking;
+    static int countBooking;
+
     Flight(){ 
         srand(time(0));// initializes random once
     }
@@ -210,19 +211,13 @@ static int countBooking;
     Booking b(currentUser, departure, destination, "12-06-2026", arrival, "A1", seatClass, to_string(flight_num),seat); // add date and gate from booking class using composition
     booking.push_back(b);   
     cout << "Seat assigned: " << seat << endl;
-    cout << "Booking successful!\n";
-
-    //to count num of bookings 
-    countBooking++ ; 
-    }
-    //showing how many bookings per flight
-    string showInfo(){
-        string s = "Flight " + to_string(flight_num) + " to " + getDestination() + " has " + to_string (countBooking) + " bookings.";
+    cout << "Booking successful!\n"; 
         
-        return s ;
-    }
+    //to count num of bookings 
+    countBooking++ ; }
+
+    
     friend class Admin;    
-    //one flight has array of bookings
 };
 int Flight :: countBooking;
 
