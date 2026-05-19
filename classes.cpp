@@ -224,6 +224,7 @@ class Admin: public User { //inherits from User
         string usrnm;
         cout<<"Enter your username: ";
         cin>>usrnm;
+        
         if (usrnm==user_name){
             string tempp;
             cout<<"Enter password Admin: "<<endl;
