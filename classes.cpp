@@ -169,8 +169,8 @@ static int countBooking;
         cout << "Departure time  " << departure << endl;        
         cout << "Arrival time  " << arrival << endl;        
         cout << "Destination  " << destination << endl;        
-        
     }
+
     // getters and setters (not necessary to use )
     void setDeparture(string dep){ departure = dep; }
     string getDeparture(){ return departure; }
@@ -196,8 +196,7 @@ static int countBooking;
         return rand() % 90 + 61;
         }
     }
-
-    //check if taimaa should add it to her part
+    // deciding the seat class
     void bookFlight(User* currentUser){
     string seatClass;
     display_flight();
@@ -207,7 +206,7 @@ static int countBooking;
     //generate seat
     int seat = generateSeat(seatClass);
         
-    //create booking (Taimaa)
+    //create booking 
     Booking b(currentUser, departure, destination, "12-06-2026", arrival, "A1", seatClass, to_string(flight_num),seat); // add date and gate from booking class using composition
     booking.push_back(b);   
     cout << "Seat assigned: " << seat << endl;
