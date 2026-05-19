@@ -185,6 +185,11 @@ bool operator==(const Flight& other){
     void setDestination(string des){ destination = des; }
     string getDestination(){ return destination; }
 
+     //after 20 bookings you wont be able to book ( flight is full )
+    bool isFull(){
+        return booking.size() >= 20; // max seats
+    }
+
     //seat randomizer
     int generateSeat(string seatClass){
     if(seatClass == "First"){
@@ -199,6 +204,11 @@ bool operator==(const Flight& other){
     }
     // deciding the seat class
     void bookFlight(User* currentUser){
+    // checking if there are available flights to be booked    
+    if (isFull()) {
+        cout << "This flight is fully booked!\n";
+        return; // stop the function
+    }
     string seatClass;
     display_flight();
     cout << "Enter class (First / Business / Economy): " << endl;
@@ -216,6 +226,11 @@ bool operator==(const Flight& other){
     //to count num of bookings 
     countBooking++ ; }
 
+    //showing how many bookings per flight
+    string showInfo(){
+        string s = "Flight " + to_string(flight_num) + " to " + getDestination() + " has " + to_string (countBooking) + " bookings.";
+        return s ;
+    }
     
     friend class Admin;    
 };
