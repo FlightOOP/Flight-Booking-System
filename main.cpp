@@ -53,7 +53,7 @@ int main(){
 
     switch (choice)
     {
-        case 1: cout<<"Please enter the number of the flight you want to book"<<endl;
+        case 1: cout<<"Please enter the number of the flight you want to book"<<endl;    //add exception handling
             int flight_number;
             cin>>flight_number;                                                 //Should sift through the array of flights
             f1.bookFlight();
