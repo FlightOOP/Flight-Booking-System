@@ -220,7 +220,7 @@ class Admin: public User { //inherits from User
     Admin(string us) {
         user_name=us;
     }
-    void login(string usrnm) override {
+    void login() override {
         string usrnm;
         cout<<"Enter your username: ";
         cin>>usrnm;
