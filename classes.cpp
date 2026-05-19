@@ -6,6 +6,7 @@
 using namespace std;
 
 class Flight  {
+
 private:
     string departure;
     string arrival;
@@ -15,10 +16,9 @@ private:
     vector<Booking> booking; //flight contains multiple bookings
 
 public:
- // operator == overloading    
-bool operator==(const Flight& other){
-    return this->flight_num == other.flight_num;
-}
+     // operator == overloading    
+    bool operator==(const Flight& other){
+    return this->flight_num == other.flight_num;   }
 
     static int countBooking;
 
