@@ -10,6 +10,19 @@
 #include "Flight.h"
 using namespace std;
 
+
+
+int getChoice(int choice)
+{
+    if (choice !=0 && choice != 1)
+    {
+        throw logic_error("Invalid input!");
+    }
+    return choice;
+}
+
+
+
 int main(){
 
     cout<<"-----------------FLIGHT BOOKING SYSTEM--------------------"<<endl;
@@ -22,19 +35,20 @@ int main(){
     Admin a1("Admin 1");                                                  //Prebuilt User-->Admin
     a1.setPasswword("pass123");
 
-    cout<<"Please enter 1 for Admin, and 0 for Guest"<<endl;
-    cout<<"----->";
+        int choice;
+    do{
+        try
+        {
+            cout<<"Please enter 1 to sign-up and 0 to log-in: "<<endl;
+            cin>>choice;
+            getChoice(choice);
 
-    int specify;
-    cin>>specify;                                                          //**Will add exception handling after we learn it**
-    if (specify==1)
-    {
-        a1.login("Admin 1");
-    }
-    if (specify==0)
-    {
-        g1.login("Guest 1");
-    }
+        }
+        catch (const logic_error& e)
+        {
+            cout<<e.what()<<endl;
+        }
+    }while (choice != 0 && choice != 1);
 
     
     cout<<"\n-----------------------------------------------------------"<<endl;
