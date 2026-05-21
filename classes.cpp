@@ -178,7 +178,7 @@ public:
     Booking b(currentUser, departure, destination, "12-06-2026", arrival, "A1", seatClass, to_string(flight_num),seat); // add date and gate from booking class using composition
     booking.push_back(b);   
     cout << "Seat assigned: " << seat << endl;
-    cout << "Booking successful!\n"; 
+    cout << "Booking successful!\n";                     //WHAT?
         
     //to count num of bookings 
     countBooking++ ; }
