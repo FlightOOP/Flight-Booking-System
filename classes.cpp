@@ -160,7 +160,7 @@ public:
         }
     }
     // deciding the seat class
-    void bookFlight(User* currentUser){                                    //FIX SYNTAX
+    void bookFlight(User* currentUser){                                  
     // checking if there are available flights to be booked    
     if (isFull()) {
         cout << "This flight is fully booked!\n";
@@ -168,7 +168,7 @@ public:
     }
     string seatClass;
     display_flight();
-    cout << "Enter class (First / Business / Economy): " << endl;        //WHEN DOES THIS GER USED? AND WHERE
+    cout << "Enter class (First / Business / Economy): " << endl;       
     cin >> seatClass;
         
     //generate seat
@@ -178,7 +178,7 @@ public:
     Booking b(currentUser, departure, destination, "12-06-2026", arrival, "A1", seatClass, to_string(flight_num),seat); // add date and gate from booking class using composition
     booking.push_back(b);   
     cout << "Seat assigned: " << seat << endl;
-    cout << "Booking successful!\n";                     //WHAT?
+    cout << "Booking successful!\n";                   
         
     //to count num of bookings 
     countBooking++ ; }
