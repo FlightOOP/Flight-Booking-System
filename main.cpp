@@ -57,6 +57,46 @@ int main(){
         }
     }while (choice != 0 && choice != 1);
 
+    if (choice == 1)                    //USER CHOSE TO SIGN UP
+    {
+        cout<<"\n-----------------------SIGNING UP------------------------"<<endl;
+        cout<<"ACCOUNT TYPE: "<<"Please Enter 1 for Admin or 0 for Guest: "<<endl;
+        do
+        {
+            try
+            {
+                cin>>choice;
+                getChoice(choice);
+            }
+            catch (const logic_error& e)
+            {
+                cout<<e.what()<<endl;
+            }
+        }while (choice != 0 && choice != 1);
+
+        if (choice == 1)                //USER CHOSE TO SIGN UP AS ADMIN
+        {
+           string username; string password;
+
+            cout<<"USERNAME: "; cin>>username;
+            cout<<"\nPASSWORD: "; cin>>password;
+            Create_Admin(username, password);
+
+            cout<<"\nADMIN ACCOUNT CREATED SUCCESSFULLY";
+        }
+        if (choice == 0)
+        {
+            string username; string password;
+            cout<<"USERNAME: "; cin>>username;
+            cout<<"\nPASSWORD: "; cin>>password;
+            Create_Guest(username, password);
+
+            cout<<"\nGUEST ACCOUNT CREATED SUCCESSFULLY"<<endl;
+        }
+    }
+
+    cout<<"----------------------------LOG IN------------------------------"<<endl;
+
     
     cout<<"\n-----------------------------------------------------------"<<endl;
     cout<<"Available Flights: "<<endl;
