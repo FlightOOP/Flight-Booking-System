@@ -26,13 +26,14 @@ int getChoice(int choice)
 int main(){
 
     cout<<"-----------------FLIGHT BOOKING SYSTEM--------------------"<<endl;
-    Flight f1("5am", "10am", 67, "Muscat, Oman");   //Our Admin should be the one to create this,
-                                                    //but we have a prebuilt flight for demonstration purposes
+     Flight f1("5:00am","10:00am", 67, "Muscat, Oman", "10/6/26", 1);
+    Flight f2("6:30pm","10:00pm", 89,"London, United Kingdom","12/6/26", 2);
+                                                                            //prebuilt flights for demonstration purposes
 
-    Guest g1("Guest 1");                                                  //Prebuilt User-->Guest
+    Guest g1("Guest");                                                  //Prebuilt User-->Guest
     g1.setPasswword("pass123");
 
-    Admin a1("Admin 1");                                                  //Prebuilt User-->Admin
+    Admin a1("Admin");                                                  //Prebuilt User-->Admin
     a1.setPasswword("pass123");
 
         int choice;
