@@ -10,12 +10,15 @@ using namespace std;
 
 class Booking{
 protected:
+    User *user;//composition between user and booking
     string destinationFrom, destinationTo, date, time, gateNo, seatClass, flight;
     int seatNo;
+    bool isCancelled;
+
 public:
-    Booking(string destinationFrom, string destinationTo, string date, string time, string gateNo, string seatClass,
-        string flight) : destinationFrom(destinationFrom), destinationTo(destinationTo), date(date),
-        time(time), gateNo(gateNo), seatClass(seatClass), flight(flight){}
+Booking(User* u , string destinationFrom, string destinationTo, string date, string time, string gateNo, string seatClass,
+    string flight, int seatNo) : user(u), destinationFrom(destinationFrom), destinationTo(destinationTo), date(date),
+    time(time), gateNo(gateNo), seatClass(seatClass), flight(flight), seatNo(seatNo), isCancelled(false){}
     //pssngrInfo is a friend of user (to get his info)
     void passengerInfo();
     void cancelBooking();
