@@ -101,6 +101,8 @@ private:
     int flight_num;
     string destination;
     string seatClass;
+    string date;
+    int gate_number; 
     vector<Booking> booking; //flight contains multiple bookings
 
 public:
