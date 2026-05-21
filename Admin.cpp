@@ -7,26 +7,6 @@ using namespace std;
 #include "Admin.h"
 
 //Admin member functions here
- void login() override {
-        string usrnm;
-        cout<<"Enter your username: ";
-        cin>>usrnm;
-        
-        if (usrnm==user_name){
-            string tempp;
-            cout<<"Enter password Admin: "<<endl;
-            cin>>tempp;
-            string p=getPassword();
-            if (tempp==p){ //user enetrs correct password
-                cout<<"Login succesful! Welcome "<<user_name;
-            }
-            else {cout<<"Incorrect password. ";}
-        }    
-    }
+ void login() override;
     //ONLY ADMIN CAN CREATE FLIGHTS!!!!!!!!
-     void createFlight(Flight &f, string departure_from, string arrival_dest, int flight_num, string destination ){
-        f.setDeparture(departure_from);
-        f.setArrival(arrival_dest);
-        f.setFlightNum(flight_num);
-        f.setDestination(destination);
-    }
+     void createFlight(Flight &f, string departure_from, string arrival_dest, int flight_num, string destination );
