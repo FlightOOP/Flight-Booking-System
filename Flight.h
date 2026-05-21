@@ -1,5 +1,12 @@
-
-
+#include <iostream>
+#include <string>
+#include<vector>
+#include<cstdlib>
+#include<ctime>
+# include "Booking.h"
+using namespace std;
+#ifndef L1_FLIGHT_H
+#define L1_FLIGHT_H
 
 class Flight  {
 private:
