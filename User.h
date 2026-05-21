@@ -6,16 +6,16 @@
 using namespace std;
 
 class User{
-protected:
+    protected:
     string user_name;
-
-private:
+    
+    private:
     string password;
     long int phone_no;
     string bank_no;
 
-public:
-    User(){}
+    public: 
+    User(){} 
     void setPasswword(string p){
         password=p;
     }
@@ -25,7 +25,7 @@ public:
 
     void setPhone_no(long int phno){
         if (to_string(phno).length()==8){
-            phone_no=phno;
+        phone_no=phno;
         }
         else {cout<<"Phone number must be 8 digits long"<<endl;}
     }
@@ -46,7 +46,7 @@ public:
         return user_name;
     }
     //BOTH ADMIN AND GUEST USE THIS
-    virtual void login(string usrnm)=0;
+    virtual void login()=0;
 };
 
 
