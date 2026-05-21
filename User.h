@@ -23,12 +23,8 @@ class User{
         return password;
     }
 
-    void setPhone_no(long int phno){
-        if (to_string(phno).length()==8){
-        phone_no=phno;
-        }
-        else {cout<<"Phone number must be 8 digits long"<<endl;}
-    }
+    void setPhone_no(long int phno);
+
     long int getPhone_no(){
         return phone_no;
     }
