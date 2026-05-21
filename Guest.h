@@ -8,13 +8,15 @@ using namespace std;
 #ifndef L1_GUEST_H
 #define L1_GUEST_H
 
-
 class Guest : public User{ //inherits from User
-public:
+    public:
     Guest(string us) {
         user_name=us;
     }
-    void login(string usrnm) override {
+    void login() override {
+        string usrnm;
+        cout<<"Enter your username: ";
+        cin>>usrnm;
         if (usrnm==user_name){
             string tempp;
             cout<<"Enter password Guest: "<<endl;
@@ -24,7 +26,7 @@ public:
                 cout<<"Login succesful! Welcome "<<user_name;
             }
             else {cout<<"Incorrect password. ";}
-        }
+        }    
     }
 };
 
