@@ -13,21 +13,7 @@ class Guest : public User{ //inherits from User
     Guest(string us) {
         user_name=us;
     }
-    void login() override {
-        string usrnm;
-        cout<<"Enter your username: ";
-        cin>>usrnm;
-        if (usrnm==user_name){
-            string tempp;
-            cout<<"Enter password Guest: "<<endl;
-            cin>>tempp;
-            string p=getPassword();
-            if (tempp==p){ //user enetrs correct password
-                cout<<"Login succesful! Welcome "<<user_name;
-            }
-            else {cout<<"Incorrect password. ";}
-        }    
-    }
+    void login() override;
 };
 
 
