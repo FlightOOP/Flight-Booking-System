@@ -18,10 +18,12 @@ private:
     string seatClass;
     string date;
     int gate_number; 
-    vector<Booking> booking; //flight contains multiple bookings
+    vector<Booking> booking;  //flight contains multiple bookings so we put them in a vector
 
 public:
+
      //constructor 
+
     Flight(string dep, string arr, int flnum, string des, string d, int gate ){
         departure = dep;
         arrival = arr;
@@ -31,6 +33,7 @@ public:
         gate_number = gate;
         srand(time(0));
     }
+
      // operator == overloading    
     bool operator==(const Flight& other){
     return this->flight_num == other.flight_num;   }
@@ -51,6 +54,7 @@ public:
     }
 
     // getters and setters (not necessary to use )
+
     void setDeparture(string dep){ departure = dep; }
     string getDeparture(){ return departure; }
 
@@ -69,6 +73,7 @@ public:
     }
 
     //seat randomizer
+
     int generateSeat(string seatClass){
     if(seatClass == "First"){
         return rand() % 20 + 1;
@@ -87,6 +92,7 @@ public:
         cout << "This flight is fully booked!\n";
         return; // stop the function
     }
+        
     string seatClass;
     display_flight();
     cout << "Enter class (First / Business / Economy): " << endl;       
@@ -101,8 +107,8 @@ public:
     cout << "Seat assigned: " << seat << endl;
     cout << "Booking successful!\n";                   
         
-    //to count num of bookings 
-    countBooking++ ; }
+    countBooking++ ;     //to count num of bookings 
+ }
 
     //showing how many bookings per flight
     string showInfo(){
