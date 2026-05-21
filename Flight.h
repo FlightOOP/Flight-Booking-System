@@ -9,35 +9,47 @@ using namespace std;
 #define L1_FLIGHT_H
 
 class Flight  {
+
 private:
     string departure;
     string arrival;
     int flight_num;
     string destination;
     string seatClass;
+    string date;
+    int gate_number; 
     vector<Booking> booking; //flight contains multiple bookings
 
 public:
-static int countBooking;
-    Flight(){
-        srand(time(0));// initializes random once
-    }
-    //constructor
-    Flight(string dep, string arr, int flnum, string des ){
+     //constructor 
+    Flight(string dep, string arr, int flnum, string des, string d, int gate ){
         departure = dep;
         arrival = arr;
         flight_num = flnum;
         destination = des;
+        date = d;
+        gate_number = gate;
         srand(time(0));
     }
+     // operator == overloading    
+    bool operator==(const Flight& other){
+    return this->flight_num == other.flight_num;   }
 
+    static int countBooking;
+
+    Flight(){ 
+        srand(time(0));// initializes random once
+    }
+   
     void display_flight(){
         cout << "Flight number " << flight_num << endl;
-        cout << "Departure time  " << departure << endl;
-        cout << "Arrival time  " << arrival << endl;
-        cout << "Destination  " << destination << endl;
-
+        cout << "Departure time  " << departure << endl;        
+        cout << "Arrival time  " << arrival << endl;        
+        cout << "Destination  " << destination << endl;    
+        cout << "Date " << date << endl;
+        cout << "Gate " << gate_number << endl;
     }
+
     // getters and setters (not necessary to use )
     void setDeparture(string dep){ departure = dep; }
     string getDeparture(){ return departure; }
@@ -51,6 +63,11 @@ static int countBooking;
     void setDestination(string des){ destination = des; }
     string getDestination(){ return destination; }
 
+     //after 20 bookings you wont be able to book ( flight is full )
+    bool isFull(){
+        return booking.size() >= 20; // max seats
+    }
+
     //seat randomizer
     int generateSeat(string seatClass){
     if(seatClass == "First"){
@@ -63,36 +80,38 @@ static int countBooking;
         return rand() % 90 + 61;
         }
     }
-
-    //check if taimaa should add it to her part
-    void bookFlight(){
+    // deciding the seat class
+    void bookFlight(User* currentUser){                                  
+    // checking if there are available flights to be booked    
+    if (isFull()) {
+        cout << "This flight is fully booked!\n";
+        return; // stop the function
+    }
     string seatClass;
     display_flight();
-    cout << "Enter class (First / Business / Economy): " << endl;
+    cout << "Enter class (First / Business / Economy): " << endl;       
     cin >> seatClass;
-
+        
     //generate seat
     int seat = generateSeat(seatClass);
-
-    //create booking (Taimaa)
-    Booking b(departure, destination, "12-06-2026", arrival, "A1", seatClass, to_string(flight_num)); // add date and gate from booking class using composition
-    booking.push_back(b);
+        
+    //create booking 
+    Booking b(currentUser, departure, destination, date, arrival, to_string( gate_number), seatClass, to_string(flight_num),seat); // add date and gate from booking class using composition
+    booking.push_back(b);   
     cout << "Seat assigned: " << seat << endl;
-    cout << "Booking successful!\n";
+    cout << "Booking successful!\n";                   
+        
+    //to count num of bookings 
+    countBooking++ ; }
 
-    //to count num of bookings
-    countBooking++ ;
-    }
     //showing how many bookings per flight
     string showInfo(){
         string s = "Flight " + to_string(flight_num) + " to " + getDestination() + " has " + to_string (countBooking) + " bookings.";
-
         return s ;
     }
-
-    //one flight has array of bookings
+    
+    friend class Admin;    
 };
 int Flight :: countBooking;
-
 
 #endif //L1_FLIGHT_H
