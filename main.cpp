@@ -62,6 +62,10 @@ int main(){
     Admin a1("Admin");                                                  //Prebuilt User-->Admin
     a1.setPasswword("pass123");
 
+    vector<Flight> flights = {f1, f2};                                  //Vectors that stores objects for display
+    vector<Guest> guests = {g1};
+    vector<Admin> admins = {a1};
+
         int choice;
     do{
         try
