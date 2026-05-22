@@ -67,30 +67,18 @@ int main(){
     vector<Admin> admins = {a1};
 
         int choice;
-    do{
-        try
-        {
-            cout<<"Please enter 1 to sign-up and 0 to log-in: "<<endl;
-            cin>>choice;
-            getChoice(choice);
 
-        }
-        catch (const logic_error& e)
-        {
-            cout<<e.what()<<endl;
-        }
-    }while (choice != 0 && choice != 1);
-
-    if (choice == 1)                    //USER CHOSE TO SIGN UP
+    do
     {
-        cout<<"\n-----------------------SIGNING UP------------------------"<<endl;
-        cout<<"ACCOUNT TYPE: "<<"Please Enter 1 for Admin or 0 for Guest: "<<endl;
-        do
-        {
+        cout<<"\n--------------------------WELCOME--------------------------"<<endl;
+        //Does the user want to sign up or login?
+        do{
             try
             {
+                cout<<"Please enter 1 to sign-up and 0 to log-in: "<<endl;
                 cin>>choice;
                 getChoice(choice);
+
             }
             catch (const logic_error& e)
             {
@@ -98,63 +86,90 @@ int main(){
             }
         }while (choice != 0 && choice != 1);
 
-        if (choice == 1)                //USER CHOSE TO SIGN UP AS ADMIN
+        if (choice == 1)                    //USER CHOSE TO SIGN UP
         {
-           string username; string password;
+            cout<<"\n-----------------------SIGNING UP------------------------"<<endl;
+            cout<<"ACCOUNT TYPE: "<<"Please Enter 1 for Admin or 0 for Guest: "<<endl;
+            do
+            {
+                try
+                {
+                    cin>>choice;
+                    getChoice(choice);
+                }
+                catch (const logic_error& e)
+                {
+                    cout<<e.what()<<endl;
+                }
+            }while (choice != 0 && choice != 1);
 
-            cout<<"USERNAME: "; cin>>username;
-            cout<<"\nPASSWORD: "; cin>>password;
-            Create_Admin(username, password);
+            if (choice == 1)                //USER CHOSE TO SIGN UP AS ADMIN
+            {
+                string username; string password;
 
-            cout<<"\nADMIN ACCOUNT CREATED SUCCESSFULLY";
+                cout<<"USERNAME: "; cin>>username;
+                cout<<"\nPASSWORD: "; cin>>password;
+                Create_Admin(username, password, admins);
+                cout<<"\nADMIN ACCOUNT CREATED SUCCESSFULLY";
+            }
+            if (choice == 0)                //USER CHOSE TO SIGN UP AS GUEST
+            {
+                string username; string password;
+                cout<<"USERNAME: "; cin>>username;
+                cout<<"\nPASSWORD: "; cin>>password;
+                Create_Guest(username, password, guests);
+                cout<<"\nGUEST ACCOUNT CREATED SUCCESSFULLY"<<endl;
+            }
+            choice=1;
         }
-        if (choice == 0)
+    }while (choice==1);
+
+    cout<<"----------------------------LOG IN------------------------------"<<endl;     //USER LOGIN
+
+    cout<<"Please enter 1 to login as an Admin or a 0 to login as a Guest: "<<endl;
+    do
+    {
+        try
         {
-            string username; string password;
-            cout<<"USERNAME: "; cin>>username;
-            cout<<"\nPASSWORD: "; cin>>password;
-            Create_Guest(username, password);
-
-            cout<<"\nGUEST ACCOUNT CREATED SUCCESSFULLY"<<endl;
+            cin>>choice;
+            getChoice(choice);
         }
+        catch (const logic_error& e)
+        {
+            cout<<e.what()<<endl;
+        }
+    }while (choice != 0 && choice != 1);
+
+    if (choice == 1)
+    {
+        cout<<"Please Select Admin Account: "<<endl;                    //LOGIN AS ADMIN
+        for (int i = 0; i < admins.size(); i++) {
+            cout << i<<". "<< admins[i].getUser_name() <<endl;
+        }
+        int choice; cin>>choice;
+        admins[choice].login();
     }
 
-    cout<<"----------------------------LOG IN------------------------------"<<endl;
+    if (choice==0)
+    {
+        cout<<"Please Select Guest Account: "<<endl;                   //LOGIN AS GUEST
+        for (int i = 0; i < guests.size(); i++)
+        {
+            cout << i<<". "<< guests[i].getUser_name() <<endl;
+        }
+        int choice; cin>>choice;
+        guests[choice].login();
+    }
 
-    
+
     cout<<"\n-----------------------------------------------------------"<<endl;
     cout<<"Available Flights: "<<endl;
-    f1.display_flight();                                                        //My prebuilt flight (Placeholder)
-    //an array that displays our available flights
-
-    cout<<"------------------------------------------------------------"<<endl;
-    cout<<"\nPlease select your next action: (Enter the number of action desirable): "<<endl;
-    cout<<"1.Book a flight \n2.Cancel my booking"                              //What my user can do if they are a guest
-          " \n3.My Booking info  \n4.User Settings"<<endl;
-    cout<<"\n-------------------------------------------------------------"<<endl;
-
-    int choice;
-    cin>>choice;
-
-    switch (choice)
-    {
-        case 1: cout<<"Please enter the number of the flight you want to book"<<endl;    //add exception handling
-            int flight_number;
-            cin>>flight_number;                                                 //Should sift through the array of flights
-            f1.bookFlight();
-            break;
-
-        case 2: //Function to cancel by booking here
-            break;
-
-        case 3: //Function to display my booking info here
-            break;
-
-        case 4: //Function for user info manipulation here
-            break;
-        default: cout<<"Session expired";
-            break;
+    for (Flight& f : flights) {
+        cout<<"\n"<<"--------------------"<<endl;
+        f.display_flight();
     }
 
+   
+   
 return 0;
 }
