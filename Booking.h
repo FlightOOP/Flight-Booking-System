@@ -24,6 +24,8 @@ public:
     void passengerInfo();
     void cancelBooking();
     void bookingInfo();
+
+    ~Booking(){ cout << "Booking Destructor Called."; }
 }:
 
 
