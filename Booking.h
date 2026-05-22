@@ -3,6 +3,7 @@
 #include<vector>
 #include<cstdlib>
 #include<ctime>
+#include "User.h"
 using namespace std;
 #ifndef L1_BOOKING_H
 #define L1_BOOKING_H
