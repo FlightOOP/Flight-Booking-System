@@ -27,6 +27,26 @@ int getChoice(int choice)
     return choice;
 }
 
+void Create_Admin(string username, string password,vector<Admin>& admins)
+{
+    Admin a(username);
+    a.setPasswword(password);
+    long int phone_number;
+    cout<<"\nPHONE NUMBER: Enter 8 digit phone number: "; cin>>phone_number;
+    a.setPhone_no(phone_number);
+    admins.emplace_back(a);
+}
+
+void Create_Guest(string username, string password, vector<Guest>& guests)
+{
+    Guest g(username);
+    g.setPasswword(password);
+    long int phone_number;
+    cout<<"\nPHONE NUMBER: Enter 8 digit phone number: "; cin>>phone_number;
+    g.setPhone_no(phone_number);
+    guests.emplace_back(g);
+}
+
 
 
 int main(){
