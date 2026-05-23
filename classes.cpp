@@ -181,7 +181,7 @@ public:
     int seat = generateSeat(seatClass);
         
     //create booking 
-    Booking b(currentUser, departure, destination, date, arrival, to_string( gate_number), seatClass, to_string(flight_num),seat); // add date and gate from booking class using composition
+    Booking b(currentUser, departure, destination, date, arrival, to_string( gate_number), seatClass, to_string(flight_num),seat); 
     booking.push_back(b);   
     cout << "Seat assigned: " << seat << endl;
     cout << "Booking successful!\n";                   
@@ -198,8 +198,6 @@ public:
     friend class Admin;    
 };
 int Flight :: countBooking;
-
-
 
 
 class Guest : public User{ //inherits from User
