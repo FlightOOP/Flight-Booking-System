@@ -222,6 +222,7 @@ class Guest : public User{ //inherits from User
             else {cout<<"Incorrect password. ";}
         }    
     }
+    ~Guest();
 };
 class Admin: public User { //inherits from User
     public:
@@ -251,4 +252,5 @@ class Admin: public User { //inherits from User
         f.setFlightNum(flight_num);
         f.setDestination(destination);
     }
+    ~Admin();
 };
