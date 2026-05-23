@@ -7,7 +7,6 @@ using namespace std;
 #include "Flight.h"
 #include "Booking.h"
 
-
 //constructor 
 Flight::Flight(string dep, string arr, int flnum, string des, string d, int gate ){
     departure = dep;
@@ -20,16 +19,17 @@ Flight::Flight(string dep, string arr, int flnum, string des, string d, int gate
 }
 
 // default constructor
-Flight::Flight(){ 
-    srand(time(0);// initializes random once
-}
 
-// operator == overloading    
+Flight::Flight(){ 
+    srand(time(0);// initializes random once }
+
+// operator == overloading   
+
 bool Flight::operator==(const Flight& other){
-    return this->flight_num == other.flight_num;
-}
+    return this->flight_num == other.flight_num;  }
 
 // static variable initialization
+
 int Flight::countBooking = 0;
 
 void Flight::display_flight(){
@@ -38,10 +38,10 @@ void Flight::display_flight(){
     cout << "Arrival time  " << arrival << endl;        
     cout << "Destination  " << destination << endl;    
     cout << "Date " << date << endl;
-    cout << "Gate " << gate_number << endl;
-}
+    cout << "Gate " << gate_number << endl;  }
 
 // getters and setters (not necessary to use )
+
 void Flight::setDeparture(string dep){ departure = dep; }
 string Flight::getDeparture(){ return departure; }
 
@@ -54,12 +54,14 @@ int Flight::getFlightNum(){ return flight_num; }
 void Flight::setDestination(string des){ destination = des; }
 string Flight::getDestination(){ return destination; }
 
+
 //after 20 bookings you wont be able to book ( flight is full )
+
 bool Flight::isFull(){
-    return booking.size() >= 20; // max seats
-}
+    return booking.size() >= 20; // max seats }
 
 //seat randomizer
+
 int Flight::generateSeat(string seatClass){
     if(seatClass == "First"){
         return rand() % 20 + 1;
@@ -72,7 +74,9 @@ int Flight::generateSeat(string seatClass){
     }
 }
 
-// deciding the seat class
+
+// deciding the seat class 
+
 void Flight::bookFlight(User* currentUser){                                  
     // checking if there are available flights to be booked    
     if (isFull()) {
@@ -95,15 +99,16 @@ void Flight::bookFlight(User* currentUser){
               to_string(flight_num), seat); // add date and gate from booking class using composition
 
     booking.push_back(b);
-
     cout << "Seat assigned: " << seat << endl;
     cout << "Booking successful!\n";                   
         
     //to count num of bookings 
+    
     countBooking++;
 }
 
 //showing how many bookings per flight
+
 string Flight::showInfo(){
     string s = "Flight " + to_string(flight_num) + " to " +
                getDestination() + " has " +
