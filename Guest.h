@@ -14,6 +14,7 @@ class Guest : public User{ //inherits from User
         user_name=us;
     }
     void login() override;
+    ~Guest();
 };
 
 
