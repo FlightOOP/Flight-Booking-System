@@ -47,6 +47,7 @@ class User{
     }
     //BOTH ADMIN AND GUEST USE THIS
     virtual void login()=0;
+    virtual ~User();
 };
 
 class Booking{
