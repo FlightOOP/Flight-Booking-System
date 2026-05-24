@@ -23,7 +23,7 @@ class User{
         return password;
     }
 
-    void setPhone_no(long int phno);
+    void setPhone_no();
 
     long int getPhone_no(){
         return phone_no;
