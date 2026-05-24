@@ -16,6 +16,7 @@ class User{
 
     public: 
     User(){} 
+    //ALL SETTERS AND GETTERS FOR VARIABLES THAT BELONG TO A USER THAT SHOULD BE PRIVATE1
     void setPasswword(string p){
         password=p;
     }
@@ -244,7 +245,7 @@ class Admin: public User { //inherits from User
             else {cout<<"Incorrect password. ";}
         }    
     }
-    //ONLY ADMIN CAN CREATE FLIGHTS!!!!!!!!
+    //ONLY ADMIN CAN EDIT FLIGHTS!!!!!!!!
      void createFlight(Flight &f, string departure_from, string arrival_dest, int flight_num, string destination ){
         f.setDeparture(departure_from);
         f.setArrival(arrival_dest);
