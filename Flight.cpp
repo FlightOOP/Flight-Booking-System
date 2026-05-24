@@ -3,12 +3,17 @@
 #include<vector>
 #include<cstdlib>
 #include<ctime>
-using namespace std;
 #include "Flight.h"
 #include "Booking.h"
 
-//constructor 
-Flight::Flight(string dep, string arr, int flnum, string des, string d, int gate ){
+//  Static variable definition 
+int Flight::countBooking = 0;
+
+//  Constructors
+Flight::Flight() {
+    srand(time(0));}
+
+Flight::Flight(string dep, string arr, int flnum, string des, string d, int gate) {
     departure = dep;
     arrival = arr;
     flight_num = flnum;
@@ -18,100 +23,80 @@ Flight::Flight(string dep, string arr, int flnum, string des, string d, int gate
     srand(time(0));
 }
 
-// default constructor
+//  Operator Overload 
+bool Flight::operator==(const Flight& other) {
+    return this->flight_num == other.flight_num;
+}
 
-Flight::Flight(){ 
-    srand(time(0);// initializes random once }
-
-// operator == overloading   
-
-bool Flight::operator==(const Flight& other){
-    return this->flight_num == other.flight_num;  }
-
-// static variable initialization
-
-int Flight::countBooking = 0;
-
-void Flight::display_flight(){
+//  Display 
+void Flight::display_flight() {
     cout << "Flight number " << flight_num << endl;
-    cout << "Departure time  " << departure << endl;        
-    cout << "Arrival time  " << arrival << endl;        
-    cout << "Destination  " << destination << endl;    
+    cout << "Departure time  " << departure << endl;
+    cout << "Arrival time  " << arrival << endl;
+    cout << "Destination  " << destination << endl;
     cout << "Date " << date << endl;
-    cout << "Gate " << gate_number << endl;  }
+    cout << "Gate " << gate_number << endl;
+}
 
-// getters and setters (not necessary to use )
+//  Getters & Setters 
+void Flight::setDeparture(string dep) { departure = dep; }
+string Flight::getDeparture() { return departure; }
 
-void Flight::setDeparture(string dep){ departure = dep; }
-string Flight::getDeparture(){ return departure; }
+void Flight::setArrival(string arr) { arrival = arr; }
+string Flight::getArrival() { return arrival; }
 
-void Flight::setArrival(string arr){ arrival = arr; }
-string Flight::getArrival(){ return arrival; }
+void Flight::setFlightNum(int num) { flight_num = num; }
+int Flight::getFlightNum() { return flight_num; }
 
-void Flight::setFlightNum(int num){ flight_num = num; }
-int Flight::getFlightNum(){ return flight_num; }
+void Flight::setDestination(string des) { destination = des; }
+string Flight::getDestination() { return destination; }
 
-void Flight::setDestination(string des){ destination = des; }
-string Flight::getDestination(){ return destination; }
+// Checking if there are any available bookings left
+bool Flight::isFull() {
+    return booking.size() >= 20;
+}
 
-
-//after 20 bookings you wont be able to book ( flight is full )
-
-bool Flight::isFull(){
-    return booking.size() >= 20; // max seats }
-
-//seat randomizer
-
-int Flight::generateSeat(string seatClass){
-    if(seatClass == "First"){
+int Flight::generateSeat(string seatClass) {
+    if (seatClass == "First") {
         return rand() % 20 + 1;
     }
-    else if(seatClass == "Business"){
+    else if (seatClass == "Business") {
         return rand() % 40 + 21;
     }
-    else{
+    else {
         return rand() % 90 + 61;
     }
 }
 
+void Flight::bookFlight(User* currentUser) {
 
-// deciding the seat class 
-
-void Flight::bookFlight(User* currentUser){                                  
-    // checking if there are available flights to be booked    
     if (isFull()) {
         cout << "This flight is fully booked!\n";
-        return; // stop the function
+        return;
     }
 
-    string seatClass;
+    string seatClassInput;
     display_flight();
 
-    cout << "Enter class (First / Business / Economy): " << endl;       
-    cin >> seatClass;
+    cout << "Enter class (First / Business / Economy): " << endl;
+    cin >> seatClassInput;
 
-    //generate seat
-    int seat = generateSeat(seatClass);
+    int seat = generateSeat(seatClassInput);
 
-    //create booking 
     Booking b(currentUser, departure, destination, date, arrival,
-              to_string(gate_number), seatClass,
-              to_string(flight_num), seat); // add date and gate from booking class using composition
+              to_string(gate_number), seatClassInput,
+              to_string(flight_num), seat);
 
     booking.push_back(b);
+
     cout << "Seat assigned: " << seat << endl;
-    cout << "Booking successful!\n";                   
-        
-    //to count num of bookings 
-    
+    cout << "Booking successful!\n";
+
     countBooking++;
 }
 
-//showing how many bookings per flight
-
-string Flight::showInfo(){
-    string s = "Flight " + to_string(flight_num) + " to " +
-               getDestination() + " has " +
-               to_string(countBooking) + " bookings.";
-    return s ;
+// flight Info 
+string Flight::showInfo() {
+    return "Flight " + to_string(flight_num) + " to " + destination +
+           " has " + to_string(countBooking) + " bookings.";
 }
