@@ -26,8 +26,9 @@ class User{
 
     void setPhone_no(){
         long long int phno;
-        cin>>phno;
+       
         while (true) {
+             cin>>phno;
             if (to_string(phno).length()==8){
             phone_no=phno;
             break;
