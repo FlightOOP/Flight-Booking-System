@@ -4,9 +4,14 @@
 #include "User.h"
 using namespace std;
 
-void User::setPhone_no(long int phno){
-        if (to_string(phno).length()==8){
-        phone_no=phno;
+void User::setPhone_no(){
+        long long int phno;
+        cin>>phno;
+        while (true) {
+            if (to_string(phno).length()==8){
+            phone_no=phno;
+            break;
+            }
+            else {cout<<"Phone number must be 8 digits long"<<endl;}
         }
-        else {cout<<"Phone number must be 8 digits long"<<endl;}
     }
