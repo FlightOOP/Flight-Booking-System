@@ -5,6 +5,7 @@
 #include<ctime>
 #include "Flight.h"
 #include "Booking.h"
+#include "User.h"
 
 //  Static variable definition 
 int Flight::countBooking = 0;
