@@ -9,11 +9,6 @@
 #include "Admin.h"
 #include "Booking.h"
 #include "Flight.h"
-#include "Class_Admin.cpp"
-#include "Class_User.cpp"
-#include "Class_Guest.cpp"
-#include "Class_Booking.cpp"
-#include "Class_Flight.cpp"
 using namespace std;
 
 
