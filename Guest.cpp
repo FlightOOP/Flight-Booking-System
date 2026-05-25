@@ -7,7 +7,7 @@
 #include "User.h"
 using namespace std;
 
-void Guest::login() override {
+void Guest::login()  {
         string usrnm;
         cout<<"Enter your username: ";
         cin>>usrnm;
