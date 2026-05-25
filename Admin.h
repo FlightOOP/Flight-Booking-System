@@ -6,8 +6,9 @@
 using namespace std;
 #ifndef L1_ADMIN_H
 #define L1_ADMIN_H
-#include "User.h"
 #include "Flight.h'
+#include "User.h"
+
 
 class Admin: public User { //inherits from User
     public:
