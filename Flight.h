@@ -4,6 +4,7 @@
 #include<cstdlib>
 #include<ctime>
 # include "Booking.h"
+#include "Admin.h"
 using namespace std;
 #ifndef L1_FLIGHT_H
 #define L1_FLIGHT_H
