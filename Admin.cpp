@@ -7,7 +7,7 @@ using namespace std;
 #include "Admin.h"
 
 //Admin member functions here
-void Admn::login() override {
+void Admn::login()  {
         string usrnm;
         cout<<"Enter your username: ";
         cin>>usrnm;
