@@ -106,4 +106,3 @@ string Flight::showInfo() {
     return "Flight " + to_string(flight_num) + " to " + destination +
            " has " + to_string(countBooking) + " bookings.";
 }
-Flight::~Flight(){};
