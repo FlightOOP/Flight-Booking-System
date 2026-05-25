@@ -22,3 +22,4 @@ void Guest::login()  {
             else {cout<<"Incorrect password. ";}
         }    
     }
+Guest::~Guest(){};
