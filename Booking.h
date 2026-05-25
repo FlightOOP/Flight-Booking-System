@@ -9,7 +9,7 @@ using namespace std;
 #define L1_BOOKING_H
 
 
-class Booking:
+class Booking{
 protected:
     User *user;//composition between user and booking
     string destinationFrom, destinationTo, date, time, gateNo, seatClass, flight;
@@ -26,7 +26,7 @@ public:
     void bookingInfo();
 
     ~Booking(){}
-}:
+};
 
 
 #endif //L1_BOOKING_H
