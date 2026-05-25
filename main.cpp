@@ -13,7 +13,7 @@
 using namespace std;
 
 
-int getChoice(int choice)
+int getChoice(int choice)                                        //Function for handling exception (entering invalid choices)
 {
     if (choice !=0 && choice != 1)
     {
@@ -22,7 +22,7 @@ int getChoice(int choice)
     return choice;
 }
 
-int getAction(int action)
+int getAction(int action)                                        //Function for handling exception (Entering invalid actions)
 {
     if (action!=0 && action !=1 && action !=2 && action !=3 && action !=4 && action !=5 && action !=6 && action !=7)
     {
@@ -31,7 +31,7 @@ int getAction(int action)
     return action;
 }
 
-void Create_Admin(string username, string password,vector<Admin>& admins)
+void Create_Admin(string username, string password,vector<Admin>& admins)            //function that creates a new admin account
 {
     Admin a(username);
     a.setPasswword(password);
@@ -40,7 +40,7 @@ void Create_Admin(string username, string password,vector<Admin>& admins)
     admins.emplace_back(a);
 }
 
-void Create_Guest(string username, string password, vector<Guest>& guests)
+void Create_Guest(string username, string password, vector<Guest>& guests)        //Function that cretes a new guest account
 {
     Guest g(username);
     g.setPasswword(password);
@@ -49,7 +49,7 @@ void Create_Guest(string username, string password, vector<Guest>& guests)
     guests.emplace_back(g);
 }
 
-void Create_Flight(vector<Flight>& flights )
+void Create_Flight(vector<Flight>& flights )                                           //Function that creates a flight
 {
     string departure, arrival, destination, date;
     int flight_num, gate_number;
@@ -71,36 +71,36 @@ void Create_Flight(vector<Flight>& flights )
 int main(){
 
 
-    cout<<"-----------------FLIGHT BOOKING SYSTEM--------------------"<<endl;
+    cout<<"-----------------FLIGHT BOOKING SYSTEM--------------------"<<endl;        //First thing the user sees
     Flight f1("5:00am","10:00am", 67, "Muscat, Oman", "10/6/26", 1);
-    Flight f2("6:30pm","10:00pm", 89,"London, United Kingdom","12/6/26", 2);
+    Flight f2("6:30pm","10:00pm", 89,"London, United Kingdom","12/6/26", 2);        //Prebuilt Flights for demonstration purposes 
 
 
-    Guest g1("Guest");                                                  //Prebuilt User-->Guest
+    Guest g1("Guest");                                                              //Prebuilt User-->Guest
     g1.setPasswword("pass123");
 
 
-    Admin a1("Admin");                                                  //Prebuilt User-->Admin
+    Admin a1("Admin");                                                              //Prebuilt User-->Admin
     a1.setPasswword("pass123");
 
 
-    vector<Flight> flights = {f1, f2};                                  //Vectors that stores objects for display
+    vector<Flight> flights = {f1, f2};                                              //Vectors that stores objects for display
     vector<Guest> guests = {g1};
     vector<Admin> admins = {a1};
-    vector<Booking> booking = {};
-    while (true)
+    
+    while (true)                                                                 //An endless loop that gives the effect of a website page
     {
-        int choice;
+        int choice;     //First it will be used to determine wherether the user signs-up or log-in then it will distinguish a guest from an admin
         do
         {
             cout<<"\n--------------------------WELCOME--------------------------"<<endl;
-            //Does the user want to sign up or login?
+            //Does the user want to sign up or login?                                        //User is given the option to sign up or login
             do{
                 try
                 {
                     cout<<"Please enter 1 to sign-up and 0 to log-in: ";
                     cin>>choice;
-                    getChoice(choice);
+                    getChoice(choice);                                               //Exception handling 
 
                 }
                 catch (const logic_error& e)
@@ -109,7 +109,7 @@ int main(){
                 }
             }while (choice != 0 && choice != 1);
 
-            if (choice == 1)                    //USER CHOSE TO SIGN UP
+            if (choice == 1)                                                        //USER CHOSE TO SIGN UP
             {
                 cout<<"\n-----------------------SIGNING UP------------------------"<<endl;
                 cout<<"ACCOUNT TYPE: "<<"Please Enter 1 for Admin or 0 for Guest: ";
@@ -117,8 +117,8 @@ int main(){
                 {
                     try
                     {
-                        cin>>choice;
-                        getChoice(choice);
+                        cin>>choice;                                                
+                        getChoice(choice);                                            //exception handling
                     }
                     catch (const logic_error& e)
                     {
@@ -126,7 +126,7 @@ int main(){
                     }
                 }while (choice != 0 && choice != 1);
 
-                if (choice == 1)                //USER CHOSE TO SIGN UP AS ADMIN
+                if (choice == 1)                                                    //USER CHOSE TO SIGN UP AS ADMIN
                 {
                     string username; string password;
 
@@ -135,7 +135,7 @@ int main(){
                     Create_Admin(username, password, admins);
                     cout<<"\nADMIN ACCOUNT CREATED SUCCESSFULLY";
                 }
-                if (choice == 0)                //USER CHOSE TO SIGN UP AS GUEST
+                if (choice == 0)                                                    //USER CHOSE TO SIGN UP AS GUEST
                 {
                     string username; string password;
                     cout<<"USERNAME: "; cin>>username;
@@ -147,7 +147,7 @@ int main(){
             }
         }while (choice==1);
 
-        cout<<"----------------------------LOG IN------------------------------"<<endl;     //USER LOGIN
+        cout<<"----------------------------LOG IN------------------------------"<<endl;     //USER CHOOSES TO LOGIN
 
         cout<<"\nPlease enter 1 to login as an Admin or a 0 to login as a Guest: ";
         do
@@ -155,7 +155,7 @@ int main(){
             try
             {
                 cin>>choice;
-                getChoice(choice);
+                getChoice(choice);                                              //exception handling 
             }
             catch (const logic_error& e)
             {
@@ -163,30 +163,30 @@ int main(){
             }
         }while (choice != 0 && choice != 1);
 
-        User* currentUser = nullptr;
-
-        int userr;
+        User* currentUser = nullptr;                                            //a pointer that points towards the account that will login
+    
+        int userr;                                                              //determines which user logs in 
         if (choice == 1)
         {
-            cout<<"\nPlease Select Admin Account: "<<endl;                    //LOGIN AS ADMIN
+            cout<<"\nPlease Select Admin Account: "<<endl;                       //LOGIN AS ADMIN
             for (int i = 0; i < admins.size(); i++) {
                 cout << i<<". "<< admins[i].getUser_name() <<endl;
             }
             cin>>userr;
             admins[userr].login();
-            currentUser = &admins[userr];
+            currentUser = &admins[userr];                                      //pointer points towards address of admin account 
         }
 
         if (choice==0)
         {
-            cout<<"\nPlease Select Guest Account: "<<endl;                   //LOGIN AS GUEST
+            cout<<"\nPlease Select Guest Account: "<<endl;                       //LOGIN AS GUEST
             for (int i = 0; i < guests.size(); i++)
             {
                 cout << i<<". "<< guests[i].getUser_name() <<endl;
             }
             cin>>userr;
             guests[userr].login();
-            currentUser = &guests[userr];
+            currentUser = &guests[userr];                                        //pointer points towards address of guest account
 
         }
 
@@ -196,7 +196,7 @@ int main(){
             cout<<"\n-----------------------------------------------------------"<<endl;
             cout<<"Available Flights: "<<endl;
 
-            for (int i = 0; i < flights.size(); i++)
+            for (int i = 0; i < flights.size(); i++)                                //Displaying all available flights for booking 
             {
                 cout<<i<<". "<<endl;
                 flights[i].display_flight();
@@ -208,7 +208,7 @@ int main(){
             {
                 cout<<"------------------------------------------------------------"<<endl;
                 cout<<"\nPlease select your next action: (Enter the number of action desirable): "<<endl;
-                cout<<"0.Logout \n1.Book a flight \n2.Cancel my booking"                                                   //What my Guest can do
+                cout<<"0.Logout \n1.Book a flight \n2.Cancel my booking"                                             //What my Guest can do
                       " \n3.My Booking info  \n4.User Settings"<<endl;
                 cout<<"\n-------------------------------------------------------------"<<endl;
             }
@@ -217,19 +217,19 @@ int main(){
             {
                 cout<<"------------------------------------------------------------"<<endl;
                 cout<<"\nPlease select your next action: (Enter the number of action desirable): "<<endl;
-                cout<<"0.Logout \n5.Create a Flight \n6.Show Flight Info"                                                   //What my Admin can do
+                cout<<"0.Logout \n5.Create a Flight \n6.Show Flight Info"                                              //What my Admin can do
                       "\n7.Cancel a Flight \n4.User Settings"<<endl;
                 cout<<"\n-------------------------------------------------------------"<<endl;
             }
 
-            int action;
+            int action;                                                       //used to determine what the guest/admin wants to do in our system
             int index = 0;
             do
             {
                 try
                 {
                     cin>>action;
-                    getAction(action);
+                    getAction(action);                                        //exception handling
                 }
                 catch (const logic_error& e)
                 {
@@ -238,34 +238,34 @@ int main(){
             }while (action !=0 && action !=1 && action !=2 && action !=3 && action !=4 && action !=5 && action !=6 && action !=7);
 
 
-            int option;
+            int option;                                                    //will be used for choosing a booking in a flight in case 2
             switch (action)
             {
-            case 0:
-                cout<<"\nSafe Travels! \n----------------------LOGGED OUT SUCCESSFULLY-------------------------";
+            case 0:  //LOGGIN OUT OF ACCOUNT (GUEST AND ADMIN)
+                cout<<"\nSafe Travels! \n----------------------LOGGED OUT SUCCESSFULLY-------------------------";    //goes back to main page
                 break;
 
 
 
 
-            case 1: 
+            case 1:   //BOOKING A FLIGHT  (GUEST)
                 if (choice ==1) {cout<<"\n Invalid input!"; break;}
                 cout<<"\nPlease enter the choice of the flight you want to book: ";
                 int flight_number;
                 cin>>flight_number;
 
-                flights[flight_number].bookFlight(currentUser);
+                flights[flight_number].bookFlight(currentUser);       
 
                 break;
 
 
 
 
-            case 2: //Function to cancel by booking here
+            case 2: //CANCELLING A BOOKING (GUEST)
                 if (choice ==1) {cout<<"\n Invalid input!"; break;}
 
                 for (Flight& f : flights) {
-                    for (Booking& b : f.getBookings()) {
+                    for (Booking& b : f.getBookings()) {          //Shows the guest his bookings           
                         cout<<index<<". ";
                         b.bookingInfo();
                     }
@@ -279,7 +279,7 @@ int main(){
                     break;
                 }
                 for (Flight& f : flights) {
-                    vector<Booking>& bookings = f.getBookings();
+                    vector<Booking>& bookings = f.getBookings();   //loops throught each flight's bookings and finding which one the user wants 
                     for (int i = 0; i < bookings.size(); i++) {
                         if (index == option) {
                             bookings.erase(bookings.begin() + i);
@@ -292,11 +292,11 @@ int main(){
                 break;
 
 
-            case 3: //Function to display my booking info here
+            case 3: //DISPLAYING MY BOOKINGS AND THEIR INFO (GUEST )
                 if (choice ==1) {cout<<"\n Invalid input!"; break;}
-                cout << "\n Below are your bookings: " << endl;
+                cout << "\n Below are your bookings: " << endl;            
                 for (Flight& f : flights) {
-                    for (Booking& b : f.getBookings()) {
+                    for (Booking& b : f.getBookings()) {           //loops through the flighs' bookings and displaying the ones belonging to the account 
                         b.bookingInfo();
                     }
                 }
@@ -306,7 +306,7 @@ int main(){
 
 
 
-            case 4: //Function for user info manipulation here
+            case 4: //MANIPULATING USER INFORMATION (GUEST AND ADMIN)
                 do
                 {
                     cout<<"------------USER SETTINGS--------------"<<"\n0.Back \n 1.Username \n2.Password \n3.Phone Number";
@@ -321,7 +321,7 @@ int main(){
                     if (option == 1)
                     {
                         string us;
-                        cout<<"\nNew Username: "; cin>>us;
+                        cout<<"\nNew Username: "; cin>>us;            //calls setter for username
 
                         if (choice == 0)
                         {
@@ -333,10 +333,10 @@ int main(){
                         }
                     }
 
-                    if (option == 2)
+                    if (option == 2)                
                     {
                         string p;
-                        cout<<"\nNew Phone Number: "; cin>>p;
+                        cout<<"\nNew Password: "; cin>>p;            //calls setter for password
 
                         if (choice == 0)
                         {
@@ -349,7 +349,7 @@ int main(){
                     }
                     if (option == 3)
                     {
-                        if (choice == 0)
+                        if (choice == 0)                            //calls function for setting phone number 
                         {
                             guests[userr].setPhone_no();
                         }
@@ -364,18 +364,18 @@ int main(){
 
 
 
-            case 5:
+            case 5: //CREATING A FLIGHT (ADMIN)
                 if (choice ==0) {cout<<"\n Invalid input!"; break;}
 
                 Create_Flight(flights);
-                cout<<"\n FLIGHT CREATED SUCCESSFULLY"<<endl;
+                cout<<"\n FLIGHT CREATED SUCCESSFULLY"<<endl;        //calls the creating flight function
                 break;
 
 
 
 
-            case 6: //Showing flights capacity
-                if (choice ==0) {cout<<"\n Invalid input!"; break;}
+            case 6: //SHOWING FLIGHT CAPACITY (ADMIN)
+                if (choice ==0) {cout<<"\n Invalid input!"; break;}       
                 for (int i = 0; i < flights.size(); i++)
                 {
                     cout << i<<". "<< flights[i].showInfo() <<endl;
@@ -385,18 +385,18 @@ int main(){
 
 
 
-            case 7: //Deleting a flight object from the vector flights
-                if (choice ==0) {cout<<"\n Invalid input!"; break;}
+            case 7: // CANCELLING FLIGHTS (ADMIN)
+                if (choice ==0) {cout<<"\n Invalid input!"; break;}    
 
                 cout<<"\nChoose a Flight to cancel: ";
                 cin>>flight_number;
-                flights.erase(flights.begin() + flight_number);
+                flights.erase(flights.begin() + flight_number);        //takes flight number and erases it from vector
                 cout<<"\n FLIGHT CANCELLED SUCCESSFULLY"<<endl;
                 break;
 
 
 
-            default: cout<<"Session expired";
+            default: cout<<"Session expired"; //EXITING THE SYSTEM
                 abort();
             }
             if (action ==0){ break;}
