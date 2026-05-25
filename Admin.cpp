@@ -30,3 +30,4 @@ void Admin::login()  {
         f.setFlightNum(flight_num);
         f.setDestination(destination);
     }
+Admin::~Admin() {};
