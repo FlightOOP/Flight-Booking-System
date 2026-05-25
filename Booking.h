@@ -25,7 +25,7 @@ public:
     void cancelBooking();
     void bookingInfo();
 
-    ~Booking(){}
+    ~Booking();
 };
 
 
