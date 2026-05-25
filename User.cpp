@@ -16,3 +16,4 @@ void User::setPhone_no(){
             else {cout<<"Phone number must be 8 digits long"<<endl;}
         }
     }
+User::~User(){};
