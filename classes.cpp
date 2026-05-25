@@ -103,7 +103,7 @@ void Booking::bookingInfo(){
 
 class Flight  {
 
-private:
+private: //encapsulation
     string departure;
     string arrival;
     int flight_num;
