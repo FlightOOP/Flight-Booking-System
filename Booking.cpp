@@ -33,4 +33,4 @@ void Booking::bookingInfo(){
         cout << "Gate Number: " << gateNo << endl;
     }
 }
-Booking::~Booking(){}
+Booking::~Booking(){};
