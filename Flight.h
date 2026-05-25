@@ -65,6 +65,7 @@ public:
     vector<Booking>& getBookings();
 
     friend class Admin;    
+    ~Flight();
 };
 
 #endif //L1_FLIGHT_H
