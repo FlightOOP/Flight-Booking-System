@@ -61,6 +61,8 @@ public:
     //showing how many bookings per flight
     string showInfo();
 
+    vector<Booking>& getBookings();
+
     friend class Admin;    
 };
 
