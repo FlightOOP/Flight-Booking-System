@@ -96,6 +96,11 @@ void Flight::bookFlight(User* currentUser) {
     countBooking++;
 }
 
+// return booking information that is stored in bookFlight() function
+vector<Booking>& Flight::getBookings() {   
+    return booking;
+}
+
 // flight Info 
 string Flight::showInfo() {
     return "Flight " + to_string(flight_num) + " to " + destination +
